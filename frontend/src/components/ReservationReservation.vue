@@ -54,6 +54,20 @@
                 <v-btn
                     color="primary"
                     text
+                    @click="save"
+                >
+                    UpdateStatusReservationCompleted
+                </v-btn>
+                <v-btn
+                    color="primary"
+                    text
+                    @click="save"
+                >
+                    UpdateStatusReservationCancelCompleted
+                </v-btn>
+                <v-btn
+                    color="primary"
+                    text
                     @click="remove"
                     v-if="!editMode"
                 >

@@ -41,6 +41,11 @@ public class Reservation {
     public void onPostPersist() {
         ReservationPlaced reservationPlaced = new ReservationPlaced(this);
         reservationPlaced.publishAfterCommit();
+
+        ReservationCompleted reservationCompleted = new ReservationCompleted(
+            this
+        );
+        reservationCompleted.publishAfterCommit();
     }
 
     @PostRemove
@@ -49,11 +54,6 @@ public class Reservation {
             this
         );
         reservationCancelPlaced.publishAfterCommit();
-
-        ReservationCompleted reservationCompleted = new ReservationCompleted(
-            this
-        );
-        reservationCompleted.publishAfterCommit();
 
         ReservationCancelCompleted reservationCancelCompleted = new ReservationCancelCompleted(
             this
@@ -79,6 +79,24 @@ public class Reservation {
     public void cancelReservation() {
         //implement business logic here:
 
+    }
+
+    public void updateStatusReservationCompleted() {
+        //implement business logic here:
+
+        ReservationCompleted reservationCompleted = new ReservationCompleted(
+            this
+        );
+        reservationCompleted.publishAfterCommit();
+    }
+
+    public void updateStatusReservationCancelCompleted() {
+        //implement business logic here:
+
+        ReservationCancelCompleted reservationCancelCompleted = new ReservationCancelCompleted(
+            this
+        );
+        reservationCancelCompleted.publishAfterCommit();
     }
 
     //<<< Clean Arch / Port Method
