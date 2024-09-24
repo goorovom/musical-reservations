@@ -10,7 +10,7 @@ cd kafka
 docker-compose up
 ```
 - Check the Kafka messages:
-```?
+```?dfasdfas
 cd infraㅇㅇ
 docker-compose exec -it kafka /bin/bash
 cd /bin
