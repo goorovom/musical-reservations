@@ -30,23 +30,23 @@ public class Seat {
 
     private Boolean isSold;
 
-    @PostPersist
-    public void onPostPersist() {
-        SeatSold seatSold = new SeatSold(this);
-        seatSold.publishAfterCommit();
-    }
+    // @PostPersist
+    // public void onPostPersist() {
+    //     SeatSold seatSold = new SeatSold(this);
+    //     seatSold.publishAfterCommit();
+    // }
 
-    @PostRemove
-    public void onPostRemove() {
-        SeatRefunded seatRefunded = new SeatRefunded(this);
-        seatRefunded.publishAfterCommit();
-    }
+    // @PostRemove
+    // public void onPostRemove() {
+    //     SeatRefunded seatRefunded = new SeatRefunded(this);
+    //     seatRefunded.publishAfterCommit();
+    // }
 
-    @PrePersist
-    public void onPrePersist() {
-        SeatAlreadySold seatAlreadySold = new SeatAlreadySold(this);
-        seatAlreadySold.publishAfterCommit();
-    }
+    // @PrePersist
+    // public void onPrePersist() {
+    //     SeatAlreadySold seatAlreadySold = new SeatAlreadySold(this);
+    //     seatAlreadySold.publishAfterCommit();
+    // }
 
     public static SeatRepository repository() {
         SeatRepository seatRepository = MusicalApplication.applicationContext.getBean(
