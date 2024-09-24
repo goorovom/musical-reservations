@@ -31,8 +31,10 @@ pipeline {
         
         stage('Docker Build') {
             steps {
-                script {
+                dir('reservation') {
+                    script {
                     image = docker.build("${REGISTRY}/${IMAGE_NAME}:v${env.BUILD_NUMBER}")
+                    }    
                 }
             }
         }
