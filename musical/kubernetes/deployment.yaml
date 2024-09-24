@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: musical
-          image: "username/musical:latest"
+          image: "gimewn/musical24:v1"
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -35,3 +35,10 @@ spec:
             timeoutSeconds: 2
             periodSeconds: 5
             failureThreshold: 5
+          volumeMounts:
+            - mountPath: "/mnt/data"
+              name: volume
+      volumes:
+      - name: volume
+        persistentVolumeClaim:
+          claimName: azurefile 

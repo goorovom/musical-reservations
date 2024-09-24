@@ -19,6 +19,7 @@ public class ReservationCancelCompleted extends AbstractEvent {
     private Integer seatRow;
     private Integer seatCol;
     private String status;
+    private Date reservedDt;
 
     public ReservationCancelCompleted(Reservation aggregate) {
         super(aggregate);

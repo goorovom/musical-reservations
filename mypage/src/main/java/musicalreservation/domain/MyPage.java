@@ -13,7 +13,7 @@ import lombok.Data;
 public class MyPage {
 
     @Id
-    //@GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     private Long musicalId;
@@ -21,4 +21,5 @@ public class MyPage {
     private Long reservationId;
     private String status;
     private Date reservedDt;
+    private Long userId;
 }

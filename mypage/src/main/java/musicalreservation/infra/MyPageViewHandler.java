@@ -32,6 +32,7 @@ public class MyPageViewHandler {
             myPage.setMusicalName(reservationCompleted.getMusicalName());
             myPage.setStatus(reservationCompleted.getStatus());
             myPage.setReservedDt(reservationCompleted.getReservedDt());
+            myPage.setUserId(reservationCompleted.getUserId());
             // view 레파지 토리에 save
             myPageRepository.save(myPage);
         } catch (Exception e) {
@@ -61,6 +62,7 @@ public class MyPageViewHandler {
                 myPage.setReservedDt(
                     reservationCancelCompleted.getReservedDt()
                 );
+                myPage.setUserId(reservationCancelCompleted.getUserId());
                 // view 레파지 토리에 save
                 myPageRepository.save(myPage);
             }
