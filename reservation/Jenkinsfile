@@ -22,7 +22,7 @@ pipeline {
             steps {
                 dir('reservation') {
                     withMaven(maven: 'Maven') {
-                        sh 'mvn package -DskipTests'
+                        sh 'mvn package -B -Dmaven.test.skip=true'
                     }
                 }
             }
