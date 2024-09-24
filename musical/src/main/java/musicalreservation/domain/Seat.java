@@ -41,8 +41,8 @@ public class Seat {
         seatAlreadySold.publishAfterCommit();
     }
 
-    @PostUpdate
-    public void onPostUpdate() {
+    @PostRemove
+    public void onPostRemove() {
         SeatRefunded seatRefunded = new SeatRefunded(this);
         seatRefunded.publishAfterCommit();
     }
