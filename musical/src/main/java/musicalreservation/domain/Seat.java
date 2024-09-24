@@ -34,11 +34,12 @@ public class Seat {
 
     @PostPersist
     public void onPostPersist() {
-        SeatSold seatSold = new SeatSold(this);
-        seatSold.publishAfterCommit();
 
         SeatAlreadySold seatAlreadySold = new SeatAlreadySold(this);
         seatAlreadySold.publishAfterCommit();
+
+        SeatSold seatSold = new SeatSold(this);
+        seatSold.publishAfterCommit();
     }
 
     @PostRemove
