@@ -1,0 +1,45 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: musical-reservation
+  namespace: default
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - istio-system/my-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /items
+        - uri:
+            prefix: /seats
+      route:
+        - destination:
+            host: musical
+            port:
+              number: 8080
+    - match:
+        - uri:
+            prefix: /reservations
+      route:
+        - destination:
+            host: reservation
+            port:
+              number: 8080
+    - match:
+        - uri:
+            prefix: /myPages
+      route:
+        - destination:
+            host: mypage
+            port:
+              number: 8080
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: frontend
+            port:
+              number: 8080
