@@ -11,7 +11,7 @@ docker-compose up
 ```
 - Check the Kafka messages:
 ```
-cd infra
+cd infraㅇㅇ
 docker-compose exec -it kafka /bin/bash
 cd /bin
 ./kafka-console-consumer --bootstrap-server localhost:9092 --topic
