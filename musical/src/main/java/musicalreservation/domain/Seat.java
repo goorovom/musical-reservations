@@ -113,6 +113,21 @@ public class Seat {
          });
         */
 
+        repository().findById(reservationPlaced.getSeatId()).ifPresent(seat -> {
+            // 이미 판매된 좌석일 때
+            if(seat.getIsSold()){
+                SeatAlreadySold seatAlreadySold = new SeatAlreadySold(seat);
+                seatAlreadySold.setReservationId(reservationPlaced.getId());
+                seatAlreadySold.publishAfterCommit();
+            }else{
+                // 예매 가능한 좌석일 때
+                seat.setIsSold(true);
+                repository().save(seat);
+                SeatSold seatSold = new SeatSold(seat);
+                seatSold.publishAfterCommit();
+            }
+        });
+
     }
     //>>> Clean Arch / Port Method
 
