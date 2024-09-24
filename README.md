@@ -16,7 +16,7 @@ docker-compose exec -it kafka /bin/bash
 cd /bin
 ./kafka-console-consumer --bootstrap-server localhost:9092 --topic
 ```
-
+ㅇㅁㄹㄴㄹㅇㅁㄴㅇㄹ
 ## Run the backend micro-services
 See the README.md files inside the each microservices directory:
 
