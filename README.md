@@ -18,7 +18,7 @@
     - 사용자가 예매한 뮤지컬 목록이 표시된다.
 
 ## 클라우드 아키텍처 설계
-![아키텍처 설계도](https://github.com/user-attachments/assets/4277efe2-e486-4e08-ad6c-d8f27de5b7d1)
+![아키텍처 설계도](https://github.com/user-attachments/assets/bdcad687-2a8c-484f-8a04-db411d23f943)
 
 ## Data Modeling/서비스 분리/설계 역량
 ### 도메인 분석 - 이벤트 스토밍
