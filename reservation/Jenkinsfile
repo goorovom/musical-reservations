@@ -20,8 +20,10 @@ pipeline {
         
         stage('Maven Build') {
             steps {
-                withMaven(maven: 'Maven') {
-                    sh 'mvn package -DskipTests'
+                dir('reservation') {
+                    withMaven(maven: 'Maven') {
+                        sh 'mvn package -DskipTests'
+                    }
                 }
             }
         }
