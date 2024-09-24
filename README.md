@@ -10,14 +10,14 @@ cd kafka
 docker-compose up
 ```
 - Check the Kafka messages:
-```
-cd infra
+```?dfasdfas
+cd infraㅇㅇ
 docker-compose exec -it kafka /bin/bash
 cd /bin
 ./kafka-console-consumer --bootstrap-server localhost:9092 --topic
 ```
-
-## Run the backend micro-services
+ㅇㅁㄹㄴㄹㅇㅁㄴㅇㄹ
+## Run the backend micro-servicesㅇㅇㅇㅇㅇ
 See the README.md files inside the each microservices directory:
 
 - musical
