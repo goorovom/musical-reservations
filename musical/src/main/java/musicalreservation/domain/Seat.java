@@ -32,10 +32,6 @@ public class Seat {
 
     @PostPersist
     public void onPostPersist() {
-
-        SeatAlreadySold seatAlreadySold = new SeatAlreadySold(this);
-        seatAlreadySold.publishAfterCommit();
-
         SeatSold seatSold = new SeatSold(this);
         seatSold.publishAfterCommit();
     }
@@ -44,6 +40,12 @@ public class Seat {
     public void onPostRemove() {
         SeatRefunded seatRefunded = new SeatRefunded(this);
         seatRefunded.publishAfterCommit();
+    }
+
+    @PrePersist
+    public void onPrePersist() {
+        SeatAlreadySold seatAlreadySold = new SeatAlreadySold(this);
+        seatAlreadySold.publishAfterCommit();
     }
 
     public static SeatRepository repository() {

@@ -43,11 +43,6 @@ public class Reservation {
             this
         );
         reservationCompleted.publishAfterCommit();
-
-        ReservationCancelCompleted reservationCancelCompleted = new ReservationCancelCompleted(
-            this
-        );
-        reservationCancelCompleted.publishAfterCommit();
     }
 
     @PrePersist
@@ -62,6 +57,11 @@ public class Reservation {
             this
         );
         reservationCancelPlaced.publishAfterCommit();
+
+        ReservationCancelCompleted reservationCancelCompleted = new ReservationCancelCompleted(
+            this
+        );
+        reservationCancelCompleted.publishAfterCommit();
     }
 
     public static ReservationRepository repository() {
