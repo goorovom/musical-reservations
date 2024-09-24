@@ -87,6 +87,7 @@ public class Reservation {
         ReservationCompleted reservationCompleted = new ReservationCompleted(
             this
         );
+        reservationCompleted.setStatus("ReservationCompleted");
         reservationCompleted.publishAfterCommit();
     }
 
@@ -96,6 +97,7 @@ public class Reservation {
         ReservationCancelCompleted reservationCancelCompleted = new ReservationCancelCompleted(
             this
         );
+        reservationCancelCompleted.setStatus("ReservationCanceled");
         reservationCancelCompleted.publishAfterCommit();
     }
 
@@ -121,6 +123,11 @@ public class Reservation {
 
          });
         */
+
+        repository().findById(seatAlreadySold.getReservationId()).ifPresent(reservation -> {
+            reservation.setStatus("ReservationImpossible");
+            repository().save(reservation);
+        });
 
     }
     //>>> Clean Arch / Port Method
