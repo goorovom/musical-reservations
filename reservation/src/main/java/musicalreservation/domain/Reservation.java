@@ -39,21 +39,10 @@ public class Reservation {
 
     @PostPersist
     public void onPostPersist() {
-        ReservationPlaced reservationPlaced = new ReservationPlaced(this);
-        reservationPlaced.publishAfterCommit();
-
         ReservationCompleted reservationCompleted = new ReservationCompleted(
             this
         );
         reservationCompleted.publishAfterCommit();
-    }
-
-    @PostRemove
-    public void onPostRemove() {
-        ReservationCancelPlaced reservationCancelPlaced = new ReservationCancelPlaced(
-            this
-        );
-        reservationCancelPlaced.publishAfterCommit();
 
         ReservationCancelCompleted reservationCancelCompleted = new ReservationCancelCompleted(
             this
@@ -61,8 +50,19 @@ public class Reservation {
         reservationCancelCompleted.publishAfterCommit();
     }
 
+    @PrePersist
+    public void onPrePersist() {
+        ReservationPlaced reservationPlaced = new ReservationPlaced(this);
+        reservationPlaced.publishAfterCommit();
+    }
+
     @PreRemove
-    public void onPreRemove() {}
+    public void onPreRemove() {
+        ReservationCancelPlaced reservationCancelPlaced = new ReservationCancelPlaced(
+            this
+        );
+        reservationCancelPlaced.publishAfterCommit();
+    }
 
     public static ReservationRepository repository() {
         ReservationRepository reservationRepository = ReservationApplication.applicationContext.getBean(

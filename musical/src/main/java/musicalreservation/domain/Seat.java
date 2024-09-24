@@ -30,8 +30,6 @@ public class Seat {
 
     private Boolean isSold;
 
-    private Long userId;
-
     @PostPersist
     public void onPostPersist() {
 

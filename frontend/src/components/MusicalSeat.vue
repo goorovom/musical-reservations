@@ -21,7 +21,6 @@
             <Number label="SeatRow" v-model="value.seatRow" :editMode="editMode" :inputUI="''"/>
             <Number label="SeatCol" v-model="value.seatCol" :editMode="editMode" :inputUI="''"/>
             <Boolean label="IsSold" v-model="value.isSold" :editMode="editMode" :inputUI="''"/>
-            <Number label="UserId" v-model="value.userId" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions>

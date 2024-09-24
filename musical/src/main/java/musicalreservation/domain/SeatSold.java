@@ -14,7 +14,6 @@ public class SeatSold extends AbstractEvent {
     private Long id;
     private Long musicalId;
     private Boolean isSold;
-    private Long userId;
     private Long reservationId;
 
     public SeatSold(Seat aggregate) {

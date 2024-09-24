@@ -46,7 +46,6 @@
                             
                             
                             
-                            
                         </v-list-item-title>
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
@@ -56,7 +55,6 @@
                             [ SeatRow :  {{data.seatRow }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ SeatCol :  {{data.seatCol }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             [ IsSold :  {{data.isSold }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ UserId :  {{data.userId }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -129,7 +127,6 @@
                 'seatRow': 0,
                 'seatCol': 0,
                 'isSold': false,
-                'userId': 0,
             }
         },
         methods: {
