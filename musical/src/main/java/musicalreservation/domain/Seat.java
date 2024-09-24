@@ -34,15 +34,18 @@ public class Seat {
     public void onPostPersist() {
         SeatSold seatSold = new SeatSold(this);
         seatSold.publishAfterCommit();
-
-        SeatAlreadySold seatAlreadySold = new SeatAlreadySold(this);
-        seatAlreadySold.publishAfterCommit();
     }
 
     @PostRemove
     public void onPostRemove() {
         SeatRefunded seatRefunded = new SeatRefunded(this);
         seatRefunded.publishAfterCommit();
+    }
+
+    @PrePersist
+    public void onPrePersist() {
+        SeatAlreadySold seatAlreadySold = new SeatAlreadySold(this);
+        seatAlreadySold.publishAfterCommit();
     }
 
     public static SeatRepository repository() {
