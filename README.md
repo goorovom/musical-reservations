@@ -123,6 +123,10 @@ spec:
 ![gateway](https://github.com/user-attachments/assets/9b713618-c40d-483e-9129-6b2b2765ab31)
 ![virtualservice](https://github.com/user-attachments/assets/dbf65979-4234-481f-b3f5-7340928b6c8a)
 
+![ingressgateway](https://github.com/user-attachments/assets/8b3a6729-4754-4091-a0ad-d83b85e870ec)
+![gateway 200](https://github.com/user-attachments/assets/5bf15c8e-249a-4206-82d2-8bc734904fb7)
+- istio-ingressgateway의 ExternalIp/items로 요청 응답 확인
+
 ### 분산 데이터 프로젝션(CQRS)
 
 ## 클라우드 배포 역량
