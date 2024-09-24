@@ -13,7 +13,6 @@ public class SeatAlreadySold extends AbstractEvent {
 
     private Long id;
     private Long musicalId;
-    private Long userId;
     private Long reservationId;
     private Boolean isSold;
 

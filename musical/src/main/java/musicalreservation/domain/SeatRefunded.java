@@ -14,7 +14,6 @@ public class SeatRefunded extends AbstractEvent {
     private Long id;
     private Long musicalId;
     private Boolean isSold;
-    private Long userId;
     private Long reservationId;
 
     public SeatRefunded(Seat aggregate) {

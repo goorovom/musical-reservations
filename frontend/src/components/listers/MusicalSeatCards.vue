@@ -114,7 +114,6 @@
                 'seatRow': 0,
                 'seatCol': 0,
                 'isSold': false,
-                'userId': 0,
             }
         },
         methods:{

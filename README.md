@@ -36,7 +36,7 @@ mvn spring-boot:run
 - musical
 ```
  http :8088/items id="id" name="name" startDate="startDate" endDate="endDate" 
- http :8088/seats id="id" musicalId="musicalId" grade="grade" seatRow="seatRow" seatCol="seatCol" isSold="isSold" userId="userId" 
+ http :8088/seats id="id" musicalId="musicalId" grade="grade" seatRow="seatRow" seatCol="seatCol" isSold="isSold" 
 ```
 - reservation
 ```

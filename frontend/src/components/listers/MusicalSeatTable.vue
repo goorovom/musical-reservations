@@ -72,7 +72,6 @@
                     { text: "seatRow", value: "seatRow" },
                     { text: "seatCol", value: "seatCol" },
                     { text: "isSold", value: "isSold" },
-                    { text: "userId", value: "userId" },
                 ],
             seat : [],
             newValue: {},
@@ -95,7 +94,6 @@
                 'seatRow': 0,
                 'seatCol': 0,
                 'isSold': false,
-                'userId': 0,
             }
         },
         methods: {
