@@ -45,6 +45,14 @@ public class Reservation {
         reservationCompleted.publishAfterCommit();
     }
 
+    @PostRemove
+    public void onPostRemove(){
+        ReservationCancelCompleted reservationCancelCompleted = new ReservationCancelCompleted(
+            this
+        );
+        reservationCancelCompleted.publishAfterCommit();
+    }
+
     @PrePersist
     public void onPrePersist() {
         ReservationPlaced reservationPlaced = new ReservationPlaced(this);
@@ -57,11 +65,7 @@ public class Reservation {
             this
         );
         reservationCancelPlaced.publishAfterCommit();
-
-        ReservationCancelCompleted reservationCancelCompleted = new ReservationCancelCompleted(
-            this
-        );
-        reservationCancelCompleted.publishAfterCommit();
+        
     }
 
     public static ReservationRepository repository() {
