@@ -12,13 +12,6 @@ pipeline {
     }
  
     stages {
-        stage('Clean') {
-            steps {
-                script {
-                    sh 'mvn clean'
-                }
-            }
-        }
                 
         stage('Clone Repository') {
             steps {
