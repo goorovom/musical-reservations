@@ -137,8 +137,10 @@ spec:
 ### CI/CD Pipeline
 > github에서 push 할 경우, trigger되어 Jenkins를 통해 배포되도록 CI/CD Pipeline 설정
 - azure vm 가상머신 생성 및 접속
+  
   ![azurevm](https://github.com/user-attachments/assets/94ff5343-475f-4d8b-8fc4-b9bbac4c8a0c)
 - Jenkins Pipeline 생성
+  
   ![pipeline](https://github.com/user-attachments/assets/3767197e-8826-4898-bb46-052590e3fa7c)
 - reservation 폴더 밑에 Jenkinsfile 생성
   ```
@@ -228,8 +230,10 @@ spec:
     }
   ```
   - github webhook 설정
+    
     ![github webhook](https://github.com/user-attachments/assets/e177abd1-896b-4753-8801-e2f5d7ea92ac)
   - github push => jenkins 빌드 확인
+    
     ![github](https://github.com/user-attachments/assets/2a248690-32ab-4e54-9559-0811a4c3ff09)
     ![jenkins](https://github.com/user-attachments/assets/35b370aa-d24f-431b-adcc-7309fe4845dd)
     
