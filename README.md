@@ -33,6 +33,7 @@
 ## MSA 개발 또는 개발관리 역량
 ### 분산트랜잭션(SAGA)
 > 메세지 채널인 Kafaka를 통해 이벤트를 Pub/Sub하도록 개발
+
 ![예매 요청](https://github.com/user-attachments/assets/cc028386-88c4-4700-b508-00b1520958db)
 - musicalId=1 seatId=1로 예매 요청 보냄
 ![예매 요청 들어옴](https://github.com/user-attachments/assets/5affb9fc-ac32-427d-8138-7a8fd82e85ce)
