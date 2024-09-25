@@ -238,6 +238,39 @@ spec:
     
     ![github](https://github.com/user-attachments/assets/2a248690-32ab-4e54-9559-0811a4c3ff09)
     ![jenkins](https://github.com/user-attachments/assets/35b370aa-d24f-431b-adcc-7309fe4845dd)
+
+  - 💥 문제점 : 어떤 폴더에서 수정되었는지에 상관없이 main 브랜치에 push 되기만 하면 Jenkins 빌드가 되어 버림
+    - Reservation Pipeline이니까 Reservation에 변화가 일어났을 때만 Jenkins 빌드가 될 순 없을지 고민
+  - 👍 해결책 : Jenkinsfile에 when { changeset "reservation/**"} 설정을 추가하여 reservation 하위에서 변화가 일어났을 때만 Jenkins가 빌드되도록 함
+    ```
+    stage('Check Changes'){
+            when {
+                changeset "reservation/**"
+            }
+            stages{
+                stage('Maven Build') {
+                    steps {
+                        dir('reservation') {
+                            withMaven(maven: 'Maven') {
+                                sh 'mvn package -B -Dmaven.test.skip=true'
+                            }
+                        }
+                    }
+                }
+                
+                stage('Docker Build') {
+                    steps {
+                        dir('reservation') {
+                            script {
+                            image = docker.build("${REGISTRY}/${IMAGE_NAME}:v${env.BUILD_NUMBER}")
+                            }    
+                        }
+                    }
+                }
+    ......
+    ```
+    - reservation/Jenkinsfile push => Jenkins build 되는 것을 확인
+    - root 폴더의 README.md push => Jenkins build 되지 않는 것을 확인
     
 ## 컨테이너 인프라 설계 및 구성 역량
 ### 컨테이너 자동 확장 - HPA
