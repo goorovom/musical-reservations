@@ -400,3 +400,42 @@ spec:
 
 ![gateway 200](https://github.com/user-attachments/assets/5bf15c8e-249a-4206-82d2-8bc734904fb7)
 - gateway 잘 동작하는 모습 확인
+
+### Jenkins Build 실패
+> Jenkinsfile을 reservation 폴더 밑에 두어서 생겼던 문제들
+1. Dockerfile을 찾을 수 없음
+- 빌드 실패하여 로그 확인 결과 아래와 같이 Dockerfile을 찾지 못함
+    ![도커파일 못 찾음](https://github.com/user-attachments/assets/0dc52de5-f76f-4de2-9352-f1bd8c96d515)
+- dir steps를 사용하여 디렉토리 경로 변경
+    ```
+    stage('Docker Build') {
+        steps {
+            dir('reservation') {
+                script {
+                image = docker.build("${REGISTRY}/${IMAGE_NAME}:v${env.BUILD_NUMBER}")
+                }    
+            }
+        }
+    }
+    ```
+2. deployment.yaml을 찾을 수 없음
+- 빌드 실패하여 로그 확인 결과 아래와 같이 deployment.yaml를 찾지 못함
+    ![deployment.yaml 못 찾음](https://github.com/user-attachments/assets/d74b3235-e0d2-4605-8d0e-85b877f15c38)
+- reservation/을 붙여 경로를 재지정해줌
+  ```
+  stage('Deploy to AKS') {
+            steps {
+                script {
+                    sh "az aks get-credentials --resource-group ${RESOURCE_GROUP} --name ${AKS_CLUSTER}"
+                    sh """
+                    sed 's/latest/v${env.BUILD_ID}/g' reservation/kubernetes/deployment.yaml > output.yaml
+                    cat output.yaml
+                    kubectl apply -f output.yaml
+                    kubectl apply -f reservation/kubernetes/service.yaml
+                    rm output.yaml
+                    """
+                }
+            }
+        }
+    }
+  ```
