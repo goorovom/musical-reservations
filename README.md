@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b7b61e97-20e4-4978-a9b2-afb69add1764)# [Cloud Native] Final Project
+# [Cloud Native] Final Project
 
 ## 🎟️ 도메인 주제 : 뮤지컬 예매 서비스
 ### 도메인 시나리오
