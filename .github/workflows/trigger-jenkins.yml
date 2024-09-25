@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Trigger Jenkins
         run: |
-          curl -X POST http://20.41.112.200:8080//github-webhook/
+          curl -X POST http://20.41.112.200:8080/github-webhook/
         env:
           JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
