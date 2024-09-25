@@ -54,6 +54,8 @@
 - Kafka를 통해 ReservationPlaced 메시지가 Publish 되었음을 확인
 ![예매 불가능](https://github.com/user-attachments/assets/c973baa9-3c5b-4a88-a3e1-45e382e9e75a)
 - 해당 좌석은 이미 예매된 좌석이므로 예매 불가 메시지(SeatAlreadySold) Publish 확인
+- SeatAlreadySold 이벤트 발생 => reservation 서비스의 update status already sold Policy를 통해 예매의 status가 `ReservationImpossible` 상태로 변경되어 최종 예매 완료 처리되지 않음
+
 ### 단말진입점(Gateway)
 > Istio를 활용하여 Gateway 설정
 - 라우팅을 위한 `gateway.yaml`과 실제 라우팅 정보가 담긴 `virtualservice.yaml` 생성
@@ -265,31 +267,27 @@ spec:
     - deployment.yaml이 수정되었으므로 reservation deploy와 svc 삭제 후 재배포
   - 부하 테스트 전
 
-    ![test before](https://github.com/user-attachments/assets/6e649996-f605-4735-880e-9b1cf78d645f)
-  - replica 개수 조정
-    ```
-    kubectl scale deploy reservation --replicas=3
-    ```
-  - replicaset 개수 조정 확인
-
-    ![before](https://github.com/user-attachments/assets/45c9c1c9-a9d2-444e-af34-13164cbeaa7d))
-    ![after](https://github.com/user-attachments/assets/ba9866b0-8663-4464-b857-125d7dc5d9c1)
+    ![test before](https://github.com/user-attachments/assets/27e2c371-3278-4eae-8abd-ed58a68b6a29)
     
   - autoscale 적용
     ```
     kubectl autoscale deployment reservation --cpu-percent=50 --min=1 --max=3
     ```
+  - HPA 확인
+    
+    ![hpa](https://github.com/user-attachments/assets/e721dfa3-ce5c-4a4a-917f-e4ab79933ce3)
   - 부하 테스트 실행
     ```
     kubectl exec -it siege -- /bin/bash
-    siege -c200 -t20S -v 20.249.179.153:8080/reservations
+    siege -c200 -t60S -v 20.249.203.176/reservations
     ```
-    - 200명의 유저가 20초 동안 요청을 보냄
+    - 20명의 유저가 40초 동안 요청을 보냄
   - 결과 확인
 
-    ![결과1](https://github.com/user-attachments/assets/3c02643c-ddcf-45e1-8a6c-2598377254c3)
-    ![결과2](https://github.com/user-attachments/assets/0e8c93f7-3cf0-49fd-8c18-6a1e98ed9c6f)
-    ![결과3](https://github.com/user-attachments/assets/42e7317d-4505-4080-b0f0-cdddad0eb4eb)
+    ![결과1](https://github.com/user-attachments/assets/ffda563a-1c45-4d91-8f85-d397bc6ee2fe)
+    ![결과2](https://github.com/user-attachments/assets/bca1f443-6487-4b53-acbb-dfe247c32b8b)
+    ![결과3](https://github.com/user-attachments/assets/c9e91638-8e6a-424d-a906-5ae25b7187fb)
+    - targets가 기준(50%)의 3배 이상 => auto scale out 된 것을 확인
     
 ### 컨테이너로부터 환경 분리 - Secret
 > Dockerhub 이미지를 private으로 설정하여 인증받은 사람만 pull 받을 수 있도록 설정하기
