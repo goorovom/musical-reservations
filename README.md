@@ -44,6 +44,7 @@
 - seatId=1 조회 시 isSold=true로 값이 변경되었음을 확인
 ### 보상처리(Compensation)
 > 이미 예매된 자리를 예매하려고 시도할 경우, 예매할 수 없도록 개발
+
 ![예매 요청2](https://github.com/user-attachments/assets/9af324ff-f6de-4cd7-bd6b-f07394f6889a)
 - 이미 판매된 musicalId=1 seatId=1로 예매 요청 보냄
 ![예매 요청 들어옴](https://github.com/user-attachments/assets/1b344a5e-59ff-4738-ab5c-ebe9655e3fa8)
