@@ -1,4 +1,4 @@
-# [Cloud Native] Final Project
+![image](https://github.com/user-attachments/assets/b7b61e97-20e4-4978-a9b2-afb69add1764)# [Cloud Native] Final Project
 
 ## 🎟️ 도메인 주제 : 뮤지컬 예매 서비스
 ### 도메인 시나리오
@@ -238,59 +238,6 @@ spec:
     
     ![github](https://github.com/user-attachments/assets/2a248690-32ab-4e54-9559-0811a4c3ff09)
     ![jenkins](https://github.com/user-attachments/assets/35b370aa-d24f-431b-adcc-7309fe4845dd)
-
-  - 💥 문제점 : 어떤 폴더에서 수정되었는지에 상관없이 main 브랜치에 push 되기만 하면 Jenkins 빌드가 되어 버림
-    - Reservation Pipeline이니까 Reservation에 변화가 일어났을 때만 Jenkins 빌드가 될 순 없을지 고민
-  - ❓ 해결책 01 : Jenkinsfile에 when { changeset "reservation/**"} 설정을 추가하여 reservation 하위에서 변화가 일어났을 때만 Jenkins가 빌드되도록 함
-    ```
-    stage('Check Changes'){
-            when {
-                changeset "reservation/**"
-            }
-            stages{
-                stage('Maven Build') {
-                    steps {
-                        dir('reservation') {
-                            withMaven(maven: 'Maven') {
-                                sh 'mvn package -B -Dmaven.test.skip=true'
-                            }
-                        }
-                    }
-                }
-                
-                stage('Docker Build') {
-                    steps {
-                        dir('reservation') {
-                            script {
-                            image = docker.build("${REGISTRY}/${IMAGE_NAME}:v${env.BUILD_NUMBER}")
-                            }    
-                        }
-                    }
-                }
-    ......
-    ```
-    - 그러나 생각과 달리 루트 폴더의 README.md가 변경되었음에도 아래와 같이 Jenkins 빌드됨을 확인
-      ![jenkins-root](https://github.com/user-attachments/assets/cd77d731-1f17-4823-9ffe-773dcb4fab21)
- - 👍 해결책 02 : Github Actions 워크플로우 파일을 생성, reservation 하위에서 변화가 일어날 때만 Jenkins webhook이 트리거되도록 설정
-   ```
-    name: Trigger Jenkins on Reservation Changes
-
-    on:
-      push:
-        paths:
-          - 'reservation/**'
-    
-    jobs:
-      trigger:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Trigger Jenkins
-            run: |
-              curl -X POST http://20.41.112.200:8080/github-webhook/
-            env:
-              JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
-   ```
-   
     
 ## 컨테이너 인프라 설계 및 구성 역량
 ### 컨테이너 자동 확장 - HPA
