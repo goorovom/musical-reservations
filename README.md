@@ -36,10 +36,13 @@
 
 ![예매 요청](https://github.com/user-attachments/assets/cc028386-88c4-4700-b508-00b1520958db)
 - musicalId=1 seatId=1로 예매 요청 보냄
+
 ![예매 요청 들어옴](https://github.com/user-attachments/assets/5affb9fc-ac32-427d-8138-7a8fd82e85ce)
 - Kafka를 통해 ReservationPlaced 메시지가 Publish 되었음을 확인
+  
 ![예매 완료](https://github.com/user-attachments/assets/a7d26634-1f7e-4fa8-b77b-d075daefdd6f)
 - 해당 뮤지컬의 해당 좌석은 한 번도 판매되지 않았으므로, 예매 가능 => 예매 완료 메시지(SeatSold) Publish 확인
+  
 ![좌석 상태 확인](https://github.com/user-attachments/assets/873a50a6-080b-406c-83bb-9aff7481247e)
 - seatId=1 조회 시 isSold=true로 값이 변경되었음을 확인
 ### 보상처리(Compensation)
