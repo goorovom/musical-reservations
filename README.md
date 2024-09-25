@@ -272,6 +272,24 @@ spec:
     - 그러나 생각과 달리 루트 폴더의 README.md가 변경되었음에도 아래와 같이 Jenkins 빌드됨을 확인
       ![jenkins-root](https://github.com/user-attachments/assets/cd77d731-1f17-4823-9ffe-773dcb4fab21)
  - 👍 해결책 02 : Github Actions 워크플로우 파일을 생성, reservation 하위에서 변화가 일어날 때만 Jenkins webhook이 트리거되도록 설정
+   ```
+    name: Trigger Jenkins on Reservation Changes
+
+    on:
+      push:
+        paths:
+          - 'reservation/**'
+    
+    jobs:
+      trigger:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Trigger Jenkins
+            run: |
+              curl -X POST http://20.41.112.200:8080/github-webhook/
+            env:
+              JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
+   ```
    
     
 ## 컨테이너 인프라 설계 및 구성 역량
